@@ -1,8 +1,7 @@
 @(Computer)[python, programing, xvortices]
 # xvortices
 
-[cylindrical coordinate moving on earth](./pics/cylindric.png)
-
+![cylindrical coordinate moving on earth](https://raw.githubusercontent.com/miniufo/xvortices/master/pics/cylindric.png)
 
 ## 1. Introduction
 `xvortices` is a python package built on [`xarray`](http://xarray.pydata.org/en/stable/) (starts with an `x`), targeting at extracting information about moving vortices from lat/lon gridded datasets.  Moving vortices include [tornado](https://en.wikipedia.org/wiki/Tornado), [tropical cyclone](https://en.wikipedia.org/wiki/Tropical_cyclone), [extratropical cyclone](https://en.wikipedia.org/wiki/Extratropical_cyclone), [polar vortex](https://en.wikipedia.org/wiki/Polar_vortex) in the atmospheric context, as well as [mesoscale eddy](https://en.wikipedia.org/wiki/Eddy_(fluid_dynamics)) and [ocean gyre](https://en.wikipedia.org/wiki/Ocean_gyre) in the oceanic context.  These moving vortices are usually described in a moving (also known as quasi-Lagrangian) cylindrical coordinate.  As the coordinate system moves on the spherical earth as a whole, one could take a view of the vortex dynamics from a quasi-Lagrangian perspective instead of the traditional Eulerian perspective.
@@ -59,7 +58,8 @@ uaz, vra = project_to_cylind(urel, vrel, etas)
 ```
 
 More details can be found at this [TC notebook](./notebooks/1.TCExample.ipynb).
-[TC example](./pics/TC.png)
+
+![TC example](./pics/TC.png)
 
 ---
 
@@ -70,4 +70,5 @@ This is a mesoscale eddy case (todo...).
 ```
 
 More details can be found at this [eddy notebook](./notebooks/2.EddyExample.ipynb).
-[eddy plot](./pics/eddy.png)
+
+![eddy plot](./pics/eddy.png)
