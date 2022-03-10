@@ -63,13 +63,13 @@ def load_cylind(ds, olon, olat, azimNum=36, radiNum=11, radMax=10,
     
     if type(ds) in [list, np.ndarray, np.array]:
         vs_interp = [v.interp(coords={lonname:lons, latname:lats}
-                              ).drop_vars(['lat','lon']) for v in ds]
+                              ).drop_vars([latname,lonname]) for v in ds]
     elif type(ds) in [xr.Dataset]:
         vs_interp = [ds[v].interp(coords={lonname:lons, latname:lats}
-                              ).drop_vars(['lat','lon']) for v in ds.data_vars]
+                              ).drop_vars([latname,lonname]) for v in ds.data_vars]
     else:
         vs_interp = ds.interp(coords={lonname:lons, latname:lats}
-                              ).drop_vars(['lat','lon'])
+                              ).drop_vars([latname,lonname])
     
     return vs_interp, lons, lats, etas_r
 

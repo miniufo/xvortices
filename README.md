@@ -63,11 +63,43 @@ More details can be found at this [TC notebook](./notebooks/1.TCExample.ipynb).
 ---
 
 ### 3.2 A moving mesoscale eddy
-This is a mesoscale eddy case (todo...).
+This is a mesoscale eddy case over the southern Indian Ocean.
 ```python
-# todo...
+import pandas as pd
+import xarray as xr
+from xvortices.xvortices import load_cylind, project_to_cylind
+
+# load an eddy positions from the "Mesoscale Eddy Trajectory Atlas" product
+eddy = pd.read_csv('d:/SETIO2021.txt', sep='\s+',
+                   index_col='time', parse_dates=True)
+# load AVISO gridded sea level anomaly and associated flow
+dset = xr.open_dataset('D:/dataset-duacs-nrt-global-merged-allsat-phy-l4_SETIO_Eddy.nc')
+azimNum, radiNum, radMax = 72, 31, 3
+
+# get eddy positions
+olon = eddy.lons.to_xarray()
+olat = eddy.lats.to_xarray()
+
+# interpolate from lat/lon grid to cylindrical grid
+azimNum, radiNum, radMax = 72, 31, 4
+[sla, adt, ugos, vgos], lons, lats, etas = load_cylind(dset[['sla','adt','ugos','vgos']],
+                                             olon=olon, olat=olat,
+                                             azimNum=azimNum, radiNum=radiNum,
+                                             radMax=radMax,
+                                             lonname='longitude',
+                                             latname='latitude')
+
+# calculate eddy's translating speed
+uo = (eddy['lons'].diff()/86400*np.cos(np.deg2rad(eddy['lats']))).to_xarray()
+vo = (eddy['lats'].diff()/86400).to_xarray()
+
+# calculate eddy-relative current components
+u_r = ugos - uo
+v_r = vgos - vo
+
+# project u/v to azimuthal/radial components
+uaz, vra = project_to_cylind(u_r, v_r, etas)
 ```
 
-More details can be found at this [eddy notebook](./notebooks/2.EddyExample.ipynb).
-
+More details can be found at this [notebook](./notebooks/2.EddyExample.ipynb).
 ![eddy plot](./pics/eddy.png)
