@@ -70,20 +70,18 @@ import xarray as xr
 from xvortices.xvortices import load_cylind, project_to_cylind
 
 # load an eddy positions from the "Mesoscale Eddy Trajectory Atlas" product
-eddy = pd.read_csv('d:/SETIO2021.txt', sep='\s+',
-                   index_col='time', parse_dates=True)
+eddy = pd.read_csv('d:/SETIO2021.txt', sep='\s+', index_col='time', parse_dates=True)
 # load AVISO gridded sea level anomaly and associated flow
 dset = xr.open_dataset('D:/dataset-duacs-nrt-global-merged-allsat-phy-l4_SETIO_Eddy.nc')
-azimNum, radiNum, radMax = 72, 31, 3
 
-# get eddy positions
-olon = eddy.lons.to_xarray()
-olat = eddy.lats.to_xarray()
+# parameters of the cylindrical coordinates
+azimNum, radiNum, radMax = 72, 31, 3
 
 # interpolate from lat/lon grid to cylindrical grid
 azimNum, radiNum, radMax = 72, 31, 4
 [sla, adt, ugos, vgos], lons, lats, etas = load_cylind(dset[['sla','adt','ugos','vgos']],
-                                             olon=olon, olat=olat,
+                                             olon=eddy.lons.to_xarray(),
+                                             olat=eddy.lats.to_xarray(),
                                              azimNum=azimNum, radiNum=radiNum,
                                              radMax=radMax,
                                              lonname='longitude',
@@ -102,4 +100,5 @@ uaz, vra = project_to_cylind(u_r, v_r, etas)
 ```
 
 More details can be found at this [notebook](./notebooks/2.EddyExample.ipynb).
+
 ![eddy plot](./pics/eddy.png)
