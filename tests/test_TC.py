@@ -16,7 +16,7 @@ condRc = None
 haima = parse_TCs('d:/Data/Typhoons/CMA/original/*.txt',
                   rec_cond=condRc, tc_cond=condTC,
                   agency='CMA')[0]
-dset = xr.open_dataset('E:/OneDrive/Python/MyPack/xvortices/tests/Haima2004.nc')
+dset = xr.open_dataset('E:/OneDrive/Python/MyPack/xvortices/Data/Haima2004.nc')
 
 
 # align times for best-track and gridded dataset
@@ -46,6 +46,62 @@ uaz, vra = project_to_cylind(u, v, etas)
 
 uaz_rel, vra_rel = storm_relative(haima.get_as_xarray('uo'),
                                   haima.get_as_xarray('vo'), uaz, vra)
+
+#%% animate Lagrangian moving
+from xmovie import Movie
+import matplotlib.pyplot as plt
+import numpy as np
+import cartopy.crs as ccrs
+import cartopy.feature as feature
+
+hinterp = h.sel(lev=850).resample(time='1H').interpolate('linear') # select 850hPa
+lonsInt = lons.resample(time='1H').interpolate('linear')
+latsInt = lats.resample(time='1H').interpolate('linear')
+olonsI  = olon.resample(time='1H').interpolate('linear')
+olatsI  = olat.resample(time='1H').interpolate('linear')
+
+fig = plt.figure(figsize=(3,3))
+
+def custom_plotfunc(da, fig, tt, *args, **kwargs):
+    ox = olonsI[tt].values
+    oy = olatsI[tt].values
+    
+    ax = fig.subplots(nrows=1, ncols=1, subplot_kw={'projection':
+                      ccrs.NearsidePerspective(central_longitude=ox,
+                                               central_latitude=oy,
+                                               satellite_height=5785831)})
+    ax.set_global()
+    ax.coastlines(resolution='10m')
+    ax.add_feature(feature.OCEAN , zorder=0)
+    ax.add_feature(feature.LAND  , zorder=0, edgecolor='black')
+    ax.add_feature(feature.RIVERS, zorder=0)
+    ax.gridlines()
+    fontsize= 15
+    
+    m=ax.scatter(lonsInt.isel(time=tt).data.flatten(),
+                 latsInt.isel(time=tt).data.flatten(), s=15,
+                 c=da.isel(time=tt).data.flatten(),
+                 vmin=1430, vmax=1540, cmap='jet', transform=ccrs.PlateCarree())
+    fig.colorbar(m, label='')
+    # ax.set_extent([ox-25, ox+25, oy-20, oy+20])
+    ax.set_title('850hPa geopotential height t='+str(tt), fontsize=fontsize)
+    # ax.set_xlabel('longitude', fontsize=fontsize-2)
+    # ax.set_ylabel('latitude', fontsize=fontsize-2)
+    # ax.set_xticks([100, 105, 110, 115, 120, 125, 130, 135])
+    # ax.set_yticks([10, 15, 20, 25, 30, 35, 40, 45])
+    # ax.set_xlim([olonsI[tt]-15, olonsI[tt]+15])
+    # ax.set_ylim([olatsI[tt]-10, olatsI[tt]+10])
+    
+    fig.tight_layout()
+    
+    return None, None
+
+
+mov = Movie(hinterp.chunk({'time':1}).unify_chunks(), custom_plotfunc, dpi=100,
+            pixelheight=600, pixelwidth=800)
+mov.save('D:/test/test.mov', progress=True,
+          framerate=15, gif_framerate=15, remove_frames=False, verbose=True,
+          parallel=True)
 
 #%%
 uazm = uaz.mean('azim')

@@ -13,6 +13,8 @@ Basically, this package would do the following jobs:
 
 With this tool, one can perform quasi-Lagrangian diagnoses of the structure, evolution, budget, intensity etc in a perspective different from the Eulerian one.
 
+![Lagrangian-view of TC](./pics/LagrangianView.gif)
+
 ---
 
 ## 2. How to install
