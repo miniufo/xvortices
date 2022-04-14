@@ -98,7 +98,7 @@ def custom_plotfunc(da, fig, tt, *args, **kwargs):
 
 
 mov = Movie(hinterp.chunk({'time':1}).unify_chunks(), custom_plotfunc, dpi=100,
-            pixelheight=600, pixelwidth=800)
+            pixelheight=400, pixelwidth=533)
 mov.save('D:/test/test.mov', progress=True,
           framerate=15, gif_framerate=15, remove_frames=False, verbose=True,
           parallel=True)
