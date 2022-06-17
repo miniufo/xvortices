@@ -1,5 +1,9 @@
 # xvortices
 
+[![DOI](https://zenodo.org/badge/426860265.svg)](https://zenodo.org/badge/latestdoi/426860265)
+![GitHub](https://img.shields.io/github/license/miniufo/xvortices)
+[![Documentation Status](https://readthedocs.org/projects/xvortices/badge/?version=latest)](https://xvortices.readthedocs.io/en/latest/?badge=latest)
+
 ![cylindrical coordinate moving on earth](./pics/cylind.jpg)
 
 ## 1. Introduction
@@ -19,7 +23,7 @@ With this tool, one can perform quasi-Lagrangian diagnoses of the structure, evo
 
 ## 2. How to install
 **Requirements**
-`xvortices` is developed under the environment with `numpy` (=version 1.15.4), and `xarray` (=version 0.15.1).  Older versions of these packages are not well tested.
+`xvortices` is developed under the environment with `numpy` (=version 1.15.4), `xarray` (=version 0.15.1), `matplotlib` (=version 3.4.3) and `cartopy` (=version 0.18.0).  Older versions of these packages are not well tested.
 
 
 **Install from github**
@@ -34,7 +38,7 @@ git clone https://github.com/miniufo/xvortices.git
 Here we demonstrate an application to the case of a moving tropical cyclone (TC) over the western North Pacific.  One may need [`besttracks`](https://github.com/miniufo/besttracks) to load TC best-track data and cooperate with `xvortices`:
 ```python
 import xarray as xr
-from xvortices.xvortices import load_cylind, project_to_cylind
+from xvortices import load_cylind, project_to_cylind
 
 azimNum, radiNum, radMax = 72, 31, 6
 
@@ -62,7 +66,7 @@ uaz, vra = project_to_cylind(urel, vrel, etas)
 
 Plotting its 3D structure is also easy:
 ```python
-from xvortices.xvortices import plot3D
+from xvortices import plot3D
 
 # select the first time step to show
 plot3D(lons[0], lats[0], uaz[0])
@@ -79,7 +83,7 @@ This is a mesoscale eddy case over the southern Indian Ocean.
 ```python
 import pandas as pd
 import xarray as xr
-from xvortices.xvortices import load_cylind, project_to_cylind
+from xvortices import load_cylind, project_to_cylind
 
 # load an eddy positions from the "Mesoscale Eddy Trajectory Atlas" product
 eddy = pd.read_csv('d:/SETIO2021.txt', sep='\s+', index_col='time', parse_dates=True)
