@@ -15,7 +15,8 @@ Here defines the core function of the data interpolation
 '''
 def load_cylind(ds, olon, olat, azimNum=36, radiNum=11, radMax=10,
                 lonname='lon', latname='lat'):
-    """
+    """Load binary data
+
     Load scalar data from a lat/lon grid to a cylindrical grid translating
     with a vortex.
 
@@ -37,6 +38,17 @@ def load_cylind(ds, olon, olat, azimNum=36, radiNum=11, radMax=10,
         Name of longitude in ds
     latname: str
         Name of latitude in ds
+
+    Return
+    ----------
+    vs_interp: xarray.DataArray or list of xarray.DataArray
+        Interpolated variables
+    lons: xarray.DataArray
+        Longitudes for cylindrical coordinates (degree)
+    lats: xarray.DataArray
+        latitudes for cylindrical coordinates (degree)
+    etas_r: xarray.DataArray
+        Local angle between radial direction and local north (radian)
     """
     azim = xr.DataArray(np.linspace(0, 360-360/azimNum, azimNum),
                         dims='azim',
@@ -75,7 +87,8 @@ def load_cylind(ds, olon, olat, azimNum=36, radiNum=11, radMax=10,
 
 
 def project_to_cylind(u, v, etas):
-    """
+    """Re-project a vector
+
     Re-project zonal/meridional (u/v) velocity components onto
     azimuthal/radial (uaz/vra) components.
 
@@ -86,7 +99,14 @@ def project_to_cylind(u, v, etas):
     v: xarray.DataArray
         Meridional velocity component
     etas: xarray.DataArray
-        Local angle between radial direction and local north.
+        Local angle between radial direction and local north
+        
+    Return
+    ----------
+    uaz: xarray.DataArray
+        Azimuthal component of velocity
+    vra: xarray.DataArray
+        radial component of velocity
     """
     uaz = -u*cos(etas) - v*sin(etas) # azimuth component
     vra = -u*sin(etas) + v*cos(etas) # radial  component
@@ -95,7 +115,8 @@ def project_to_cylind(u, v, etas):
 
 
 def storm_relative(uc, vc, uaz, vra):
-    """
+    """Removing storm motion
+
     Calculate storm-relative velocity given the translating
     velocity of the center.
 
@@ -109,6 +130,13 @@ def storm_relative(uc, vc, uaz, vra):
         Azimuth velocity component
     vra: xarray.DataArray
         radial velocity component
+        
+    Return
+    ----------
+    uaz_rel: xarray.DataArray
+        Azimuthal component of storm-relative velocity
+    vra_rel: xarray.DataArray
+        radial component of storm-relative velocity
     """
     cd = arctan2(vc, uc)
     cs = hypot(uc, vc)

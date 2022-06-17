@@ -1,0 +1,251 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. General Features &mdash; xvortices 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/xvorticesIcon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="xvortices" href="modules.html" />
+    <link rel="prev" title="Welcome to xvortices’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/xvorticesLogo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. General Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#make-use-of-xarray-s-functionality">Make use of xarray’s functionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cylindrical-coordinates-on-spherical-earth">Cylindrical coordinates on spherical earth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quick-3d-view-of-a-vortex">Quick 3D view of a vortex</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">xvortices</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xvortices</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>1. General Features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/1.introduction.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="general-features">
+<h1>1. General Features<a class="headerlink" href="#general-features" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><img alt="3D plot" src="https://raw.githubusercontent.com/miniufo/xvortices/master/pics/cylind.jpg" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">xvortices</span></code> is a python package built on <a class="reference external" href="http://xarray.pydata.org/en/stable/"><code class="docutils literal notranslate"><span class="pre">xarray</span></code></a> (starts with an <code class="docutils literal notranslate"><span class="pre">x</span></code>), targeting at extracting information about moving vortices from lat/lon gridded datasets.  Moving vortices include <a class="reference external" href="https://en.wikipedia.org/wiki/Tornado">tornado</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Tropical_cyclone">tropical cyclone</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Extratropical_cyclone">extratropical cyclone</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Polar_vortex">polar vortex</a> in the atmospheric context, as well as <a class="reference external" href="https://en.wikipedia.org/wiki/Eddy_(fluid_dynamics)">mesoscale eddy</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Ocean_gyre">ocean gyre</a> in the oceanic context.  These moving vortices are usually described in a moving (also known as quasi-Lagrangian) cylindrical coordinate.  As the coordinate system moves on the spherical earth as a whole, one could take a view of the vortex dynamics from a quasi-Lagrangian perspective instead of the traditional Eulerian perspective.</p>
+<p>Basically, this package would do the following jobs:</p>
+<ul class="simple">
+<li><p>accept an <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code> (or a list of <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code>) as an input dataset, usually in a fashion of lat/lon grid;</p></li>
+<li><p>interpolate the data onto the cylindrical coordinates once the origin of the moving coordinate is given (this is naturally done using the builtin function of <code class="docutils literal notranslate"><span class="pre">xarray</span></code>);</p></li>
+<li><p>return the interpolated fields, including scalars and vectors;</p></li>
+<li><p>re-project the vectors onto the azimuthal/radial directions;</p></li>
+</ul>
+<p>With this tool, one can perform quasi-Lagrangian diagnoses of the structure, evolution, budget, intensity etc in a perspective different from the Eulerian one.</p>
+</section>
+<hr class="docutils" />
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<section id="make-use-of-xarray-s-functionality">
+<h3>Make use of xarray’s functionality<a class="headerlink" href="#make-use-of-xarray-s-functionality" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">xvortices</span></code> is built on <a class="reference external" href="http://xarray.pydata.org/en/stable/"><code class="docutils literal notranslate"><span class="pre">xarray</span></code></a>, which means that all the inputs and outputs are already structured in <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code>.  As a result, one can easily open a <a class="reference external" href="https://www.unidata.ucar.edu/software/netcdf/"><code class="docutils literal notranslate"><span class="pre">NetCDF</span></code></a> dataset, feed the lat/lon data variables into <code class="docutils literal notranslate"><span class="pre">xvortices</span></code>, and then get the interpolated data variables defined on cylindrical coordinates.  The whole interpolation is accomplished using <a class="reference external" href="http://xarray.pydata.org/en/stable/"><code class="docutils literal notranslate"><span class="pre">xarray</span></code></a>’s linear interpolation functionality, and thus easily generalized to 4D dataset as (time, level, lat, lon) =&gt; (time, level, radial, azimuth).  In addition, <a class="reference external" href="http://xarray.pydata.org/en/stable/"><code class="docutils literal notranslate"><span class="pre">xarray</span></code></a> also make the coordinate transform of a very large dataset efficient and possible because of its integration with <a class="reference external" href="https://www.dask.org/"><code class="docutils literal notranslate"><span class="pre">dask</span></code></a> for parallel and out-of-core computing.</p>
+</section>
+<section id="cylindrical-coordinates-on-spherical-earth">
+<h3>Cylindrical coordinates on spherical earth<a class="headerlink" href="#cylindrical-coordinates-on-spherical-earth" title="Permalink to this headline">¶</a></h3>
+<p>The cylindrical coordinates describing the moving vortices are defined on the spherical earth rather than Cartesian coordinate.  Note that only the horizontal coordinates is transformed (2D lat/lon to radial/azimuthal), the vertical and time coordinates are not modified at all.  The 2D cylindrical coordinates on the spherical earth, with ($\eta$, $\beta$) representing the azimuthal and radial directions, are defined in the following figure.</p>
+<p><img alt="cylind" src="_images/coordinates.png" /></p>
+<p>Note that $\eta$ is defined as the angle started from the local north direction, rotating anti-clockwise to the radial direction.  The radial angle $\beta$ starts from the center of the coordinates and pointed to a local cylindrical point.  So if the cylindrical coordinates coinside with the South Pole, ($\eta$, $\beta$) of a point on earth will be equivalent to (lon, $-\pi/2$+lat).</p>
+</section>
+<section id="quick-3d-view-of-a-vortex">
+<h3>Quick 3D view of a vortex<a class="headerlink" href="#quick-3d-view-of-a-vortex" title="Permalink to this headline">¶</a></h3>
+<p>Since <code class="docutils literal notranslate"><span class="pre">xvortices</span></code> makes use of <a class="reference external" href="http://xarray.pydata.org/en/stable/"><code class="docutils literal notranslate"><span class="pre">xarray</span></code></a>, the interpolated data variables on cylindrical coordinates can be easily plotted.  The package also provides a 3D plot function that allows a quick 3D view of a vortex structure.</p>
+<p><img alt="3D cylind" src="_images/3DCylind.png" /></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules.html" class="btn btn-neutral float-right" title="xvortices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to xvortices’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, MiniUFO
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

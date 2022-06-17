@@ -115,7 +115,7 @@ import numpy as np
 
 tlev = 4
 
-fig, axes = pplt.subplots(nrows=2, ncols=2, figsize=(12,10), sharex=3, sharey=3)
+fig, axes = pplt.subplots(nrows=2, ncols=2, figsize=(11,10), sharex=3, sharey=3)
 
 fontsize = 16
 levels = np.linspace(-10, 16, 27) # u
@@ -191,7 +191,7 @@ import proplot as pplt
 
 zlev = 0
 tlev = 16
-varN = ut_rel
+varN = uaz_rel
 varO = u
 
 fig, axes = pplt.subplots(nrows=1, ncols=3, figsize=(12,4.2), sharex=3, sharey=3,
@@ -284,4 +284,13 @@ axes.format(abc='(a)', lonlabels='b', latlabels='l',
             coast=True, lonlines=5, latlines=3, grid=False)
 
 
+#%% plot 3D
+from xvortices.xvortices import plot3D
+
+uplot = u[5]
+lon = lons[5]
+lat = lats[5]
+
+plot3D(lon, lat, uplot, figsize=(18, 11), reverseZ=True, cmap='bwr',
+       title='3D structure of zonal wind')
 

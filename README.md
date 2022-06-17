@@ -58,9 +58,19 @@ vrel = v - vorel # storm-relative v
 uaz, vra = project_to_cylind(urel, vrel, etas)
 ```
 
-More details can be found at this [TC notebook](./notebooks/1.TCExample.ipynb).
-
 ![TC example](./pics/TC.png)
+
+Plotting its 3D structure is also easy:
+```python
+from xvortices.xvortices import plot3D
+
+# select the first time step to show
+plot3D(lons[0], lats[0], uaz[0])
+```
+
+![3D cylind](./docs/source/_static/3DCylind.png)
+
+More details can be found at this [TC notebook](./notebooks/1.TCExample.ipynb).
 
 ---
 
@@ -101,6 +111,6 @@ v_r = vgos - vo
 uaz, vra = project_to_cylind(u_r, v_r, etas)
 ```
 
-More details can be found at this [notebook](./notebooks/2.EddyExample.ipynb).
-
 ![eddy plot](./pics/eddy.png)
+
+More details can be found at this [notebook](./notebooks/2.EddyExample.ipynb).
