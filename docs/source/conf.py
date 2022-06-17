@@ -35,11 +35,11 @@ release = '0.1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'myst_parser',            # Markdown
     'sphinx.ext.autodoc',     # api auto-gen
     'sphinx.ext.doctest',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',     # math
-    'myst-parser',            # Markdown
     # 'recommonmark',           # Markdown
 ]
 
